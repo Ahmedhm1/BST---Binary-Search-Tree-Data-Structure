@@ -4,7 +4,7 @@ Binary Search Tree (BST) implementation in Python.
 This module provides two classes:
 1. Node: Represents a node in the tree.
 2. Tree: Represents the binary search tree with basic operations:
-   - Insert (append)
+   - Insert
    - Traversals (pre-order, in-order, post-order)
    - Search
    - Get min/max
@@ -41,7 +41,7 @@ class Tree:
         self.root = None
         self.items = 0
 
-    def append(self, value):
+    def insert(self, value):
         """
         Insert a value into the BST.
 
@@ -288,3 +288,4 @@ class Tree:
             current = current.right
 
         return current.value
+
