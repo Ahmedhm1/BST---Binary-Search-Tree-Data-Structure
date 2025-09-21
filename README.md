@@ -1,7 +1,7 @@
 # Binary Search Tree in Python
 
 This project implements a Binary Search Tree (BST) in Python with basic operations:  
-- Insert values (`append`)  
+- Insert values 
 - Remove values (`remove_value`)  
 - Traversals (pre-order, in-order, post-order)  
 - Search for values  
@@ -18,9 +18,9 @@ If you just want to try the tree without installing anything, copy **`tree.py`**
 from tree import Tree
 
 tree = Tree()
-tree.append(5)
-tree.append(3)
-tree.append(7)
+tree.insert(5)
+tree.insert(3)
+tree.insert(7)
 tree.print_in_order()
 ```
 
@@ -43,9 +43,9 @@ Now you can import it anywhere:
 from bst import Tree
 
 tree = Tree()
-tree.append(10)
-tree.append(4)
-tree.append(12)
+tree.insert(10)
+tree.insert(4)
+tree.insert(12)
 tree.print_in_order()
 ```
 
@@ -58,13 +58,13 @@ from bst import Tree
 
 # Create tree and insert values
 test = Tree()
-test.append(5)
-test.append(8)
-test.append(6)
-test.append(9)
-test.append(3)
-test.append(4)
-test.append(2)
+test.insert(5)
+test.insert(8)
+test.insert(6)
+test.insert(9)
+test.insert(3)
+test.insert(4)
+test.insert(2)
 
 # Remove values
 test.remove_value(5)   # Removes root
