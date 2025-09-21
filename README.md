@@ -34,7 +34,7 @@ If you want to use this as a Python package, you first need **Git installed**.
 Then install directly from GitHub using pip:
 
 ```bash
-pip install git+https://github.com/Ahmedhm1/BST---Binary-Search-Tree-Data-Structure.git
+pip install git+https://github.com/Ahmedhm1/BST---Binary-Search-Tree-Python.git
 ```
 
 Now you can import it anywhere:
