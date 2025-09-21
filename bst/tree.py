@@ -24,11 +24,10 @@ class Node:
         left (Node): Reference to the left child node.
         right (Node): Reference to the right child node.
     """
-    def __init__(self, value):
-        self.value = value
+    def __init__(self, Value):
+        self.value = Value
         self.right = None
         self.left = None
-
 
 class Tree:
     """
@@ -39,8 +38,8 @@ class Tree:
         items (int): The number of nodes in the tree.
     """
     def __init__(self):
-        self.items = 0
         self.root = None
+        self.items = 0
 
     def append(self, value):
         """
@@ -51,30 +50,30 @@ class Tree:
 
         Returns:
             True if inserted successfully.
-            str if the value already exists.
+            -1 if the value already exists.
         """
         new_node = Node(value)
-        if self.items == 0:  # If tree is empty, set root
+        if self.items == 0:
             self.root = new_node
             self.items += 1
             return True
         
         current = self.root
         while True:
-            if value < current.value:  # Go left
+            if value < current.value:
                 if current.left is None:
                     current.left = new_node
                     self.items += 1
                     return True
                 current = current.left
-            elif value > current.value:  # Go right
+            elif value > current.value:
                 if current.right is None:
                     current.right = new_node
                     self.items += 1
                     return True
                 current = current.right
             else:
-                return f"{value} already added"
+                return -1
 
     def print_pre_order(self, current=1):
         """
@@ -136,7 +135,7 @@ class Tree:
             value (int/float): The value to remove.
 
         Returns:
-            The value removed, or False if not found.
+            The value removed, or -1 if not found.
         """
         if self.is_empty():
             raise Exception("Tree is empty")
@@ -150,28 +149,33 @@ class Tree:
             if deleted_node.value == value:
                 found = True
                 break
+
             elif value < deleted_node.value:
                 before_deleted_node = deleted_node
                 deleted_node = deleted_node.left
+                
             elif value > deleted_node.value:
                 before_deleted_node = deleted_node
                 deleted_node = deleted_node.right
 
         if not found:
-            return False
+            return -1
         
         # Case 1: Node has no children
         if not deleted_node.left and not deleted_node.right:
             if self.root.value == value:
                 self.root = None
+                
             elif before_deleted_node.left == deleted_node:
                 before_deleted_node.left = None
+
             elif before_deleted_node.right == deleted_node:
                 before_deleted_node.right = None
 
         # Case 2: Node has one child
         elif not deleted_node.left or not deleted_node.right:
             child = deleted_node.left if deleted_node.left else deleted_node.right
+
             if self.root.value == value:
                 self.root = child
             elif before_deleted_node.left == deleted_node:
@@ -181,27 +185,27 @@ class Tree:
 
         # Case 3: Node has two children
         elif deleted_node.left and deleted_node.right:
-            before_successor_node = deleted_node
-            successor_node = deleted_node.right
+            before_Successor_node = deleted_node
+            Successor_node = deleted_node.right
 
             # Find in-order successor
-            while successor_node.left:
-                before_successor_node = successor_node
-                successor_node = successor_node.left
+            while Successor_node.left:
+                before_Successor_node = Successor_node
+                Successor_node = Successor_node.left
 
-            if before_successor_node != deleted_node:
-                before_successor_node.left = successor_node.right
-                successor_node.right = deleted_node.right
+            if before_Successor_node != deleted_node:
+                before_Successor_node.left = Successor_node.right
+                Successor_node.right = deleted_node.right
 
-            successor_node.left = deleted_node.left
+            Successor_node.left = deleted_node.left
 
             if before_deleted_node.left == deleted_node:
-                before_deleted_node.left = successor_node
+                before_deleted_node.left = Successor_node
             elif before_deleted_node.right == deleted_node:
-                before_deleted_node.right = successor_node
+                before_deleted_node.right = Successor_node
 
             if self.root == deleted_node:
-                self.root = successor_node
+                self.root = Successor_node
 
         self.items -= 1
         return deleted_node.value
@@ -215,15 +219,15 @@ class Tree:
             new_value (int/float): New value to set.
 
         Returns:
-            True if changed, False otherwise.
+            True if changed, -1 otherwise.
         """
         if self.is_empty():
             raise Exception("Tree is empty")
-        if current is None:
-            return False
+        
+        if current == None:
+            return -1
         if current == 1:
             current = self.root
-
         if current.value == old_value:
             current.value = new_value
             return True
@@ -231,29 +235,29 @@ class Tree:
             return self.change_value(old_value, new_value, current.left)
         elif old_value > current.value and current.right:
             return self.change_value(old_value, new_value, current.right)
-        return False
+        return -1
 
     def search(self, value, current=1):
         """
         Search for a value in the tree.
 
         Returns:
-            True if found, False otherwise.
+            True if found, -1 otherwise.
         """
         if self.is_empty():
             raise Exception("Tree is empty")
-        if current is None:
-            return False
+
+        if current == None:
+            return -1
         if current == 1:
             current = self.root
-
         if current.value == value:
             return True
         elif value < current.value and current.left:
             return self.search(value, current.left)
         elif value > current.value and current.right:
             return self.search(value, current.right)
-        return False
+        return -1
     
     def get_min(self, current=1):
         """
@@ -261,6 +265,7 @@ class Tree:
         """
         if self.is_empty():
             raise Exception("Tree is empty")
+        
         if current == 1:
             current = self.root
 
@@ -275,6 +280,7 @@ class Tree:
         """
         if self.is_empty():
             raise Exception("Tree is empty")
+        
         if current == 1:
             current = self.root
 
